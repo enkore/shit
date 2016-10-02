@@ -27,7 +27,8 @@ def repo_name():
 def current_upstream():
     symref = scrape('git symbolic-ref -q HEAD')
     try:
-        return scrape('git for-each-ref --format="%(upstream:short)" ' + symref)
+        remote, branch = scrape('git for-each-ref --format="%(upstream:short)" ' + symref).split('/', maxsplit=1)
+        return remote
     except CPE:
         click.echo('No upstream configured.')
 
