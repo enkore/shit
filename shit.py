@@ -109,7 +109,7 @@ def head():
     else:
         rev_range = 'master..HEAD'
         click.echo('Commits on this feature branch:')
-    run('git log --format="format:%cN: %s" ' + rev_range)
+    run('git log --format="format:%aN: %s" ' + rev_range)
 
 
 @shit.command()
