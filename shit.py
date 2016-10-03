@@ -29,7 +29,7 @@ def current_upstream():
     try:
         remote, branch = scrape('git for-each-ref --format="%(upstream:short)" ' + symref).split('/', maxsplit=1)
         return remote
-    except CPE:
+    except (CPE, ValueError):
         click.echo('No upstream configured.')
 
 
@@ -49,7 +49,7 @@ def usual_upstream():
         try:
             # upstream/branch/blablabla
             upstream, branch = scrape('git rev-parse --abbrev-ref %s@{upstream}' % branch).split('/', maxsplit=1)
-        except CPE:
+        except (CPE, ValueError):
             # no upstream for this branch
             continue
         upstreams[upstream] += 1
