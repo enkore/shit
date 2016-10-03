@@ -154,7 +154,6 @@ def push(remote=''):
     upstream = current_upstream()
     if not upstream:
         upstream = usual_upstream()
-        click.echo('Decided to push to ' + click.style(upstream, fg='yellow'))
     run('git push -u ' + upstream + ' ' + branch)
 
 
